@@ -1,0 +1,13 @@
+Photobox
+--------
+
+
+Photobox is a simple Node.js project that aims
+to do the following:
+
+    1. Allow users to register.
+    2. Authenticate registered users.
+    3. Allow authenticated users to upload photos.
+    4. Allow authenticated users to arrange photos into public
+       and private galleries.
+
