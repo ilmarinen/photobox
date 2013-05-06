@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+
+  form(action='/register', method='post')
+      div
+          label Username:
+          input(type='text', name='username')
+        div
+          label Password:
+          input(type='password', name='password1')
+        div
+          label Re-Type Password:
+          input(type='password', name='password2')
+        div
+          input(type='submit', value='Register')
+
