@@ -2,7 +2,6 @@ var mongoose = require('mongoose'),
     User = require('./user-model');
 
 
-
 exports.connectDB = function(connectString, callback){
     mongoose.connect(connectString, function(err){
         if(err) console.log(err);
@@ -13,10 +12,13 @@ exports.connectDB = function(connectString, callback){
 
 
 exports.authenticate = function(req, res, next){
+    console.log(req.url);
     if(req.session.logged == true){
-        next(req, res);
+        console.log('Authenticated user.');
+        next();
     }
     else{
+        console.log('Unauthenticated. Re-directing to login page.');
         res.redirect('/login');
     }
 }
@@ -39,7 +41,7 @@ exports.processRegister = function(req, res){
                 newuser.save(function(err){
                     if(err) throw err;
                 });
-                res.render('simple-auth/welcome', {title: 'Account successfully created', username: req.body.username});
+                res.render('welcome', {title: 'Account successfully created', username: req.body.username});
             }
             else{
                 res.render('register', {title: "Account" + user.username +  "already exists."})
@@ -73,6 +75,7 @@ exports.processLogin = function(req, res){
 
 
 exports.login = function(req, res){
+    console.log('Welcome to the login page.');
     if(req.session.logged == true){
         res.render('welcome', {title: 'Welcome', username: req.session.username});
     }
@@ -88,3 +91,8 @@ exports.register = function(req, res){
 
 
 
+exports.processLogout = function(req, res){
+    console.log('Logged out.');
+    req.session.destroy();
+    res.render('general_message', {title: 'Logged Out.', m: 'You have been successfully logged out.'});
+}

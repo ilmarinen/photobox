@@ -1,7 +1,14 @@
 
 var express = require('express')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , mongoose = require('mongoose');
+
+var connStr = 'mongodb://localhost:27017/mongoose-bcrypt-test';
+mongoose.connect(connStr, function(err){
+    if(err) throw err;
+    console.log('Successfully connected to MongoDB');
+});
 
 app = express();
 
@@ -20,7 +27,7 @@ app.use(express.session({secret: 'my other secret'}));
 app.use(app.router);
   app.use(require('stylus').middleware(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(simple_auth.authenticate);
+
 
 
 // development only
@@ -30,6 +37,7 @@ if ('development' == app.get('env')) {
 
 
 require('./local_modules/simple-auth/routes');
+require('./local_modules/photobox/routes');
 
 
 http.createServer(app).listen(app.get('port'), function(){
