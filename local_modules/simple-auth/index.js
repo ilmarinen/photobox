@@ -59,7 +59,7 @@ exports.processLogin = function(req, res){
                 if(isMatch){
                     req.session.logged = true;
                     req.session.username = user.username
-                    res.render('welcome', {title: 'Welcome', username: req.body.username});
+                    res.render('welcome', {title: 'Welcome to Photobox', header: 'Welcome ' + req.body.username});
                 }
                 else{
                     res.render('login', {title: "Invalid Login."});
@@ -80,7 +80,7 @@ exports.login = function(req, res){
         res.render('welcome', {title: 'Welcome', username: req.session.username});
     }
     else{
-        res.render('login', {title: 'Login'});
+        res.render('login', {title: 'Photobox Login', header: 'Welcome to Photobox'});
     }
 }
 
@@ -94,5 +94,5 @@ exports.register = function(req, res){
 exports.processLogout = function(req, res){
     console.log('Logged out.');
     req.session.destroy();
-    res.render('general_message', {title: 'Logged Out.', m: 'You have been successfully logged out.'});
+    res.render('general_message', {title: 'Logged Out', header: 'Welcome to Photobox', general_message: 'You have been successfully logged out.'});
 }

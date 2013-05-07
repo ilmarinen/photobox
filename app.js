@@ -35,6 +35,9 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+app.get('/', function(req, res){
+    res.render('index', {title: 'Photobox', header: 'Welcome to Photobox'});
+});
 
 require('./local_modules/simple-auth/routes');
 require('./local_modules/photobox/routes');

@@ -1,15 +1,26 @@
-extends layout
+extend layout
 
 block content
-  h1= title
+  p
+    | Vivamus hendrerit arcu sed erat molestie
+    | vehicula. Sed auctor neque eu tellus
+    | rhoncus ut eleifend nibh porttitor. Ut in.
+    
+  p
+    | Donec congue lacinia dui, a porttitor
+    | lectus condimentum laoreet. Nunc eu
+    | ullamcorper orci. Quisque eget odio ac
+    | lectus vestibulum faucibus eget in metus.
+    | In pellentesque faucibus vestibulum. Nulla
+    | at nulla justo, eget luctus tortor.
 
-  form(action='/login', method='post')
-      div
-          label Username:
-          input(type='text', name='username')
-        div
-          label Password:
-          input(type='password', name='password')
-        div
-          input(type='submit', value='Log In')
-
+block sidebar
+  .widget
+    h1 Login
+    p
+      form(action='/login', method='post')
+        label Username:
+        input(type='text', name='username')
+        label Password:
+        input(type='password', name='password')
+        input(type='submit', value='Log In')

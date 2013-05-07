@@ -1,7 +1,15 @@
-doctype 5
+!!!5
 html
   head
-    title= title
+    title #{title}
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    header
+      h1 #{header}
+    .container
+      .main-content
+        block content
+      .sidebar
+        block sidebar
+    footer
+      p Created by Praphat Xavier Fernandes

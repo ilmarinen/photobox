@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  p
+    h2 Create a New Gallery
+    form(action='/picture/new', method='post', enctype='multipart/form-data')
+      label Gallery Title
+      input(type='text', name='galleryTitle')
+      label Gallery Covery Photo
+      input(type='file', name='photoImage')
+      input(type='submit', value='Create')
+
+
+block sidebar
+  .widget
+    h1 Menu
+    p
+      ul
+        li
+          a(href='/gallery/new') New Gallery
+
+        li
+          a(href='/galleries') Browse Galleries
+
+        li
+          a(href='/pictures') Browse Photos
+
+        li
+          a(href='/logout') Logout
