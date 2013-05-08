@@ -12,6 +12,11 @@ exports.uploadPicture = function(req, res){
 
 
 exports.processUploadPicture = function(req, res){
+    console.log('Uploaded Image: ', req.files);
+    if (req.files.photoImage.size == 0){
+        res.redirect('/picture/new');
+    }
+    else{
     User.findOne({username: req.session.username}, function(err, user){
         var ObjectId = mongoose.Types.ObjectId;
         user_id = ObjectId.fromString(user.id);
@@ -20,7 +25,7 @@ exports.processUploadPicture = function(req, res){
         thumbnailName = 'thumbnail-' + path.basename(req.files.photoImage.path);
         thumbnailPath = path.join(path.dirname(req.files.photoImage.path), thumbnailName);
         im.resize({srcPath: req.files.photoImage.path, dstPath: thumbnailPath, width: 256}, function(err, stdout, stderr){
-            if(err) throw err;
+            if(err) res.redirect('/picture/new');
             console.log('Successfully resized ' + req.files.photoImage.path + ' to ' + thumbnailPath);
             thumbnailData = fs.readFileSync(thumbnailPath);
             newPhoto = new photobox.Photo();
@@ -40,6 +45,7 @@ exports.processUploadPicture = function(req, res){
     });
     console.log('Redirecting');
     res.redirect('/home');
+    }
 }
 
 
