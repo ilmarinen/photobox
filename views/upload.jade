@@ -1,11 +1,25 @@
 extends layout
 
 block content
-  h1= title
+  p
+    form(action='/picture/new', method='post', enctype='multipart/form-data')
+      label Title
+      input(type="text", name="photoTitle")
 
-  form(action='/picture/new', method='post', enctype='multipart/form-data')
-    div
-        input(type="file", name="photoImage")
-    div
+      label Photo
+      input(type="file", name="photoImage")
       input(type='submit', value='Upload')
 
+block sidebar
+  .widget
+    h1 Menu
+    p
+      ul
+        li
+          a(href='/gallery/new') New Photo
+
+        li
+          a(href='/galleries') Browse Photos
+
+        li
+          a(href='/logout') Logout

@@ -37,6 +37,11 @@ header {
 .main-content p {
   margin-bottom: 20px;
 }
+.main-content p form {
+  font-size: 13px;
+  padding: 0px 10px;
+  margin-bottom: 10px;
+}
 .sidebar {
   float: left;
   width: 200px;

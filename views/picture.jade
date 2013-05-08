@@ -1,7 +1,22 @@
 extends layout
 
 block content
-  title= title
+  p
+    div
+      img(src="/picture/#{picture_id}")
 
-  div
-    img(src="/picture/#{picture_id}")
+block sidebar
+  .widget
+    h1 Menu
+    p
+      ul
+        li
+          a(href='/picture/new') New Photo
+
+        li
+          a(href='/picture') Browse Photos
+
+        li
+          a(href='/logout') Logout
+
+
