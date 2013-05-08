@@ -4,7 +4,8 @@ block content
   p
    - each photo_id in photo_ids
     div
-      img(src="/thumbnail/#{photo_id}")
+      a(href="/viewpicture/#{photo_id}")
+        img(src="/thumbnail/#{photo_id}")
 
 block sidebar
   .widget
