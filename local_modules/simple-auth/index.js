@@ -24,10 +24,14 @@ exports.authenticate = function(req, res, next){
 }
 
 
+exports.home = function(req, res){
+    res.render('home', {title: 'Home', header: 'Welcome to Photobox', username: req.session.username});
+}
+
 
 exports.processRegister = function(req, res){
     if (req.body.password1 != req.body.password2){
-        res.render('register', {title: "Passwords don't match."})
+        res.render('general_message', {title: "Passwords don't match.", header: "Welcome to Photobox", general_message: "Passwords don't match."});
     }
     else{
         newuser = new User({
@@ -41,10 +45,10 @@ exports.processRegister = function(req, res){
                 newuser.save(function(err){
                     if(err) throw err;
                 });
-                res.render('welcome', {title: 'Account successfully created', header: 'Welcome ' + req.body.username});
+                res.render('general_message', {title: 'Account successfully created', header: 'Welcome to Photobox', general_message: 'Account ' + req.body.username + ' created successfully.'});
             }
             else{
-                res.render('register', {title: 'Register', header: "Account" + user.username +  "already exists."})
+                res.render('general_message', {title: 'Register', header: "Welcome to Photobox", general_message: "Account " + user.username +  " already exists."})
             }
         });
     }
@@ -59,15 +63,15 @@ exports.processLogin = function(req, res){
                 if(isMatch){
                     req.session.logged = true;
                     req.session.username = user.username
-                    res.render('welcome', {title: 'Welcome to Photobox', header: 'Welcome ' + req.body.username});
+                    res.redirect('/home');
                 }
                 else{
-                    res.render('login', {title: "Invalid Login."});
+                    res.render('general_message', {title: "Invalid Login.", header: "Welcome to Photobox", general_message: "Invalid Login."});
                 }
              });
         }
         else{
-            res.render('login', {title: "Invalid Login."});
+            res.render('general_message', {title: "Invalid Login.", header: "Welcome to Photobox", general_message: "Invalid Login."});
         }
     });
 }
@@ -77,7 +81,7 @@ exports.processLogin = function(req, res){
 exports.login = function(req, res){
     console.log('Welcome to the login page.');
     if(req.session.logged == true){
-        res.render('welcome', {title: 'Welcome', username: req.session.username});
+        res.redirect('/home');
     }
     else{
         res.render('login', {title: 'Photobox Login', header: 'Welcome to Photobox'});

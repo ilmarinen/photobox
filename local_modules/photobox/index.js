@@ -39,7 +39,7 @@ exports.processUploadPicture = function(req, res){
         });
     });
     console.log('Redirecting');
-    res.redirect('/welcome');
+    res.redirect('/home');
 }
 
 
