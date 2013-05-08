@@ -41,10 +41,10 @@ exports.processRegister = function(req, res){
                 newuser.save(function(err){
                     if(err) throw err;
                 });
-                res.render('welcome', {title: 'Account successfully created', username: req.body.username});
+                res.render('welcome', {title: 'Account successfully created', header: 'Welcome ' + req.body.username});
             }
             else{
-                res.render('register', {title: "Account" + user.username +  "already exists."})
+                res.render('register', {title: 'Register', header: "Account" + user.username +  "already exists."})
             }
         });
     }
@@ -86,7 +86,7 @@ exports.login = function(req, res){
 
 
 exports.register = function(req, res){
-    res.render('register', {title: 'Register'})
+    res.render('register', {title: 'Register', header: 'Welcome to Photobox'})
 }
 
 

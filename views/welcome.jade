@@ -2,29 +2,18 @@ extends layout
 
 block content
   p
-    | Vivamus hendrerit arcu sed erat molestie
-    | vehicula. Sed auctor neque eu tellus
-    | rhoncus ut eleifend nibh porttitor. Ut in.
+    | Welcome to Photobox, a photo archiving and displaying website. If you are a member then please login. If not then please &nbsp;
+    a(href='/register') register here.
 
-  p
-    | Donec congue lacinia dui, a porttitor
-    | lectus condimentum laoreet. Nunc eu
-    | ullamcorper orci. Quisque eget odio ac
-    | lectus vestibulum faucibus eget in metus.
-    | In pellentesque faucibus vestibulum. Nulla
-    | at nulla justo, eget luctus tortor.
+
 
 block sidebar
   .widget
-    h1 Menu
+    h1 Login
     p
-      ul
-        li
-          a(href='/picture/new') New Photo
-
-        li
-          a(href='/picture') Browse Photos
-
-        li
-          a(href='/logout') Logout
-
+      form(action='/login', method='post')
+        label Username:
+        input(type='text', name='username')
+        label Password:
+        input(type='password', name='password')
+        input(type='submit', value='Log In')

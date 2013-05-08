@@ -14,4 +14,4 @@ app.get('/viewpicture/:id', photobox_handler.viewPicture);
 
 app.get('/gallery/new', simple_auth.authenticate, photobox_handler.newGallery);
 
-app.get('/welcome', simple_auth.authenticate, photobox_handler.welcome);
+app.get('/home', simple_auth.authenticate, photobox_handler.welcome);

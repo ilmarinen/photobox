@@ -36,7 +36,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', function(req, res){
-    res.render('index', {title: 'Photobox', header: 'Welcome to Photobox'});
+    res.render('welcome', {title: 'Photobox', header: 'Welcome to Photobox'});
 });
 
 require('./local_modules/simple-auth/routes');
