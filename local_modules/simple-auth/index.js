@@ -33,6 +33,12 @@ exports.processRegister = function(req, res){
     if (req.body.password1 != req.body.password2){
         res.render('general_message', {title: "Passwords don't match.", header: "Welcome to Photobox", general_message: "Passwords don't match."});
     }
+    else if(req.body.username.length == 0){
+        res.render('general_message', {title: 'Invalid Username', header: 'Welcome to Photobox', general_message: 'Invalid username.'});
+    }
+    else if(req.body.password1.length < 1){
+        res.render('general_message', {title: 'Password Too Short', header: 'Welcome to Photobox', general_message: 'Password too short.'});
+    }
     else{
         newuser = new User({
             username: req.body.username,
