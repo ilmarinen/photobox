@@ -81,3 +81,17 @@ exports.viewPicture = function(req, res){
 exports.newGallery = function(req, res){
     res.render('newgallery', {title: 'New Gallery', header: 'Welcome to Photobox'});
 }
+
+
+
+exports.getPictures = function(req, res){
+    photobox.Photo.find({},function(err, photos){
+        if(err) {console.log(err); throw err;}
+        var photo_ids = [];
+        for(i = 0; i < photos.length; i++){
+            console.log('Photo id: ' + photos[i].id);
+            photo_ids[i] = photos[i].id
+        }
+        res.render('gallery', {title: 'Browse Photos', header: 'Welcome to Photobox', 'photo_ids': photo_ids});
+    });
+}

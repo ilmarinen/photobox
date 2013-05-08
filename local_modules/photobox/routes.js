@@ -7,6 +7,9 @@ app.post('/picture/new', simple_auth.authenticate, photobox_handler.processUploa
 app.get('/thumbnail/:id', photobox_handler.getThumbnail);
 
 app.get('/picture/:id', photobox_handler.getPicture);
+
+app.get('/picture', photobox_handler.getPictures);
+
 app.get('/viewpicture/:id', photobox_handler.viewPicture);
 
 app.get('/gallery/new', simple_auth.authenticate, photobox_handler.newGallery);

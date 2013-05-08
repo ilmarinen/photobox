@@ -1,7 +1,21 @@
 extends layout
 
 block content
-  h1= title
+  p
+   - each photo_id in photo_ids
+    div
+      img(src="/thumbnail/#{photo_id}")
 
-  div
-    Welcome to gallery #{id}
+block sidebar
+  .widget
+    h1 Menu
+    p
+      ul
+        li
+          a(href='/picture/new') New Photo
+
+        li
+          a(href='/picture') Browse Photos
+
+        li
+          a(href='/logout') Logout
