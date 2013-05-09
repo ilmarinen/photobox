@@ -11,3 +11,30 @@ to do the following:
     4. Allow authenticated users to arrange photos into public
        and private galleries.
 
+
+Installation
+------------
+
+You need to install the following basic packages first:
+
+    1. node
+    2. npm
+    3. imagemagick
+    4. mongodb
+
+Once you have installed these you can then do the following:
+
+    1. git clone https://github.com/ilmarinen/photobox.git
+    2. cd photobox
+    3. npm install
+
+npm will install all the necessary modules into photobox/node_modules
+
+You can then start the web application by typing:
+
+    node app.js
+
+By default it listens on port 8000. You can change this by editing
+the port setting in app.js. If you want it to listen on port 80 you
+will need sudo privileges.
+
