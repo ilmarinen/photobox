@@ -3,23 +3,7 @@ extends layout
 block content
   p
     div
-      img(src="/picture/#{picture_id}")
+      img(src="/picture/#{picture_id}", width="500px")
 
-block sidebar
-  .widget
-    h1 Menu
-    p
-      ul
-        li
-          a(href='/home') Home
-
-        li
-          a(href='/picture/new') New Photo
-
-        li
-          a(href='/picture') Browse Photos
-
-        li
-          a(href='/logout') Logout
 
 
