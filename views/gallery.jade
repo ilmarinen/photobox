@@ -2,7 +2,7 @@ extends layout
 
 block content
   - each photo_id in photo_ids
-    .main_widget
+    div
       p
         a(href="/viewpicture/#{photo_id}")
           img(src="/thumbnail/#{photo_id}")

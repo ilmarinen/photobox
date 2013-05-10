@@ -25,6 +25,16 @@ header {
   border-bottom: 1px solid #df1806;
   text-shadow: 0px -1px 0px #df1806;
 }
+.thumbnail_widget {
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  margin-left: 20px;
+  background-color: #fff;
+  box-shadow: inset 0px 0px 0px 3px rgba(255,255,255,0.8), 0px 3px 0px -2px rgba(0,0,0,0.1);
+}
+.thumbnail_widget a {
+  text-decoration: none;
+}
 .main_widget {
   border-radius: 3px;
   border: 1px solid #ccc;
