@@ -1,15 +1,20 @@
 extends layout
 
 block content
-  p #{general_message}
+  .main_widget
+    p #{general_message}
 
 block sidebar
-  .widget
+  .sidebar_widget
     h1 Login
     p
       form(action='/login', method='post')
-        label Username:
-        input(type='text', name='username')
-        label Password:
-        input(type='password', name='password')
-        input(type='submit', value='Log In')
+        ul
+          li
+            label Username
+            input(type='text', name='username')
+          li
+            label Password
+            input(type='password', name='password')
+          li
+            input(type='submit', value='Log In')

@@ -32,6 +32,60 @@ header
   border-bottom 1px solid darken(main-color, 30%)
   text-shadow 0px -1px 0px darken(main-color, 30%)
 
+.main_widget
+
+  border-radius 3px
+  border 1px solid #ccc
+  margin-left 20px
+  background-color background-color
+  box-shadow inset 0px 0px 0px 3px rgba(#fff, 0.8), 0px 3px 0px -2px rgba(#000, 0.1)
+
+  h1
+    font-family 'Quicksand'
+    margin 13px 10px 4px
+    padding-bottom 10px
+    border-bottom 1px dotted #ddd
+    border-radius 2px 2px 0px 0px     
+    margin-bottom 10px
+
+  p
+    font-size 17px
+    padding 0px 10px
+    margin-bottom 10px
+
+  form
+    font-size 13px
+    padding 0px 10px
+    margin-bottom 10px
+
+    fieldset
+      margin 5px 0 0 0
+      padding 0 0 0 0
+
+
+    label
+      margin 5px 0 0 0
+      font-size 13px
+      width 65px
+      display inline-block
+      text-align right
+      padding-right 5px
+
+  a
+    text-decoration none
+    color #444
+
+  ul
+    font-size 15px
+    padding 0px 10px
+    margin-bottom 10px
+    list-style-type none
+
+    li
+      padding-left 0px
+
+
+
 .container
   width 500px
   margin 50px auto
@@ -58,13 +112,7 @@ header
   float left
   width 200px
 
-  .widget
-
-    /*
-     * Note the lack of vendor
-     * prefixes here. Nib will
-     * add them for us
-     */
+  .sidebar_widget
     border-radius 3px
     border 1px solid #ccc
     margin-left 20px
@@ -86,12 +134,27 @@ header
 
     form
       font-size 13px
-      padding 0px 10px
-      margin-bottom 10px
+      padding 0px 0px
+      margin-bottom 0px
 
-    a 
-      text-decoration none
-      color #444
+      fieldset
+        margin 0 0 0 0
+        padding 0 0 0 0
+
+      label
+        margin 5px 0 0 0
+        font-size 13px
+        display inline-block
+        padding-left 2px
+
+      ul
+        font-size 15px
+        padding 0px 10px
+        margin-bottom 10px
+        list-style-type none
+
+        li
+          padding-left 0px
 
     ul
       font-size 15px
@@ -102,6 +165,9 @@ header
       li
         padding-left 0px
 
+    a
+      text-decoration none
+      color #444
 
 
 p

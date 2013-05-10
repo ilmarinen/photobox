@@ -1,19 +1,24 @@
 extends layout
 
 block content
-  p
-    | Welcome to Photobox, a photo archiving and displaying website. If you are a member then please login. If not then please &nbsp;
-    a(href='/register') register here.
+  .main_widget
+    p
+      | Welcome to Photobox, a photo archiving and displaying website. If you are a member then please login. If not then please &nbsp;
+      a(href='/register') register here.
 
 
 
 block sidebar
-  .widget
+  .sidebar_widget
     h1 Login
     p
       form(action='/login', method='post')
-        label Username:
-        input(type='text', name='username')
-        label Password:
-        input(type='password', name='password')
-        input(type='submit', value='Log In')
+        ul
+          li
+            label Username
+            input(type='text', name='username')
+          li
+            label Password
+            input(type='password', name='password')
+          li
+            input(type='submit', value='Log In')

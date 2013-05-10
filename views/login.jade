@@ -15,12 +15,16 @@ block content
     | at nulla justo, eget luctus tortor.
 
 block sidebar
-  .widget
+  .sidebar_widget
     h1 Login
     p
       form(action='/login', method='post')
-        label Username:
-        input(type='text', name='username')
-        label Password:
-        input(type='password', name='password')
-        input(type='submit', value='Log In')
+        ul
+          li
+            label Username
+            input(type='text', name='username')
+          li
+            label Password
+            input(type='password', name='password')
+          li
+            input(type='submit', value='Log In')

@@ -25,6 +25,56 @@ header {
   border-bottom: 1px solid #df1806;
   text-shadow: 0px -1px 0px #df1806;
 }
+.main_widget {
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  margin-left: 20px;
+  background-color: #faf9f0;
+  box-shadow: inset 0px 0px 0px 3px rgba(255,255,255,0.8), 0px 3px 0px -2px rgba(0,0,0,0.1);
+}
+.main_widget h1 {
+  font-family: 'Quicksand';
+  margin: 13px 10px 4px;
+  padding-bottom: 10px;
+  border-bottom: 1px dotted #ddd;
+  border-radius: 2px 2px 0px 0px;
+  margin-bottom: 10px;
+}
+.main_widget p {
+  font-size: 17px;
+  padding: 0px 10px;
+  margin-bottom: 10px;
+}
+.main_widget form {
+  font-size: 13px;
+  padding: 0px 10px;
+  margin-bottom: 10px;
+}
+.main_widget form fieldset {
+  margin: 5px 0 0 0;
+  padding: 0 0 0 0;
+}
+.main_widget form label {
+  margin: 5px 0 0 0;
+  font-size: 13px;
+  width: 65px;
+  display: inline-block;
+  text-align: right;
+  padding-right: 5px;
+}
+.main_widget a {
+  text-decoration: none;
+  color: #444;
+}
+.main_widget ul {
+  font-size: 15px;
+  padding: 0px 10px;
+  margin-bottom: 10px;
+  list-style-type: none;
+}
+.main_widget ul li {
+  padding-left: 0px;
+}
 .container {
   width: 500px;
   margin: 50px auto;
@@ -49,19 +99,14 @@ header {
   float: left;
   width: 200px;
 }
-.sidebar .widget {
-/*
-     * Note the lack of vendor
-     * prefixes here. Nib will
-     * add them for us
-     */
+.sidebar .sidebar_widget {
   border-radius: 3px;
   border: 1px solid #ccc;
   margin-left: 20px;
   background-color: #faf9f0;
   box-shadow: inset 0px 0px 0px 3px rgba(255,255,255,0.8), 0px 3px 0px -2px rgba(0,0,0,0.1);
 }
-.sidebar .widget h1 {
+.sidebar .sidebar_widget h1 {
   font-family: 'Quicksand';
   margin: 13px 10px 4px;
   padding-bottom: 10px;
@@ -69,28 +114,47 @@ header {
   border-radius: 2px 2px 0px 0px;
   margin-bottom: 10px;
 }
-.sidebar .widget p {
+.sidebar .sidebar_widget p {
   font-size: 13px;
   padding: 0px 10px;
   margin-bottom: 10px;
 }
-.sidebar .widget form {
+.sidebar .sidebar_widget form {
   font-size: 13px;
-  padding: 0px 10px;
-  margin-bottom: 10px;
+  padding: 0px 0px;
+  margin-bottom: 0px;
 }
-.sidebar .widget a {
-  text-decoration: none;
-  color: #444;
+.sidebar .sidebar_widget form fieldset {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
 }
-.sidebar .widget ul {
+.sidebar .sidebar_widget form label {
+  margin: 5px 0 0 0;
+  font-size: 13px;
+  display: inline-block;
+  padding-left: 2px;
+}
+.sidebar .sidebar_widget form ul {
   font-size: 15px;
   padding: 0px 10px;
   margin-bottom: 10px;
   list-style-type: none;
 }
-.sidebar .widget ul li {
+.sidebar .sidebar_widget form ul li {
   padding-left: 0px;
+}
+.sidebar .sidebar_widget ul {
+  font-size: 15px;
+  padding: 0px 10px;
+  margin-bottom: 10px;
+  list-style-type: none;
+}
+.sidebar .sidebar_widget ul li {
+  padding-left: 0px;
+}
+.sidebar .sidebar_widget a {
+  text-decoration: none;
+  color: #444;
 }
 p {
   line-height: 1.8;

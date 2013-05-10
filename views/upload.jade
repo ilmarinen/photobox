@@ -1,22 +1,23 @@
 extends layout
 
 block content
-  p
-    form(action='/picture/new', method='post', enctype='multipart/form-data')
-      ul
-        li
-          label Title
-          input(type="text", name="photoTitle")
+  .main_widget
+    h1 Upload a Photo
+    p
+      form(action='/picture/new', method='post', enctype='multipart/form-data')
+        ul
+          li
+            label Photo Title
+            input(type="text", name="photoTitle")
 
-        li
-          label Photo
-          input(type="file", name="photoImage")
+          li
+            input(type="file", value="Select Photo", name="photoImage")
 
-        li
-          input(type='submit', value='Upload')
+          li
+            input(type='submit', value='Upload')
 
 block sidebar
-  .widget
+  .sidebar_widget
     h1 Menu
     p
       ul

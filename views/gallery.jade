@@ -1,14 +1,14 @@
 extends layout
 
 block content
-  p
-   - each photo_id in photo_ids
-    div
-      a(href="/viewpicture/#{photo_id}")
-        img(src="/thumbnail/#{photo_id}")
+  - each photo_id in photo_ids
+    .main_widget
+      p
+        a(href="/viewpicture/#{photo_id}")
+          img(src="/thumbnail/#{photo_id}")
 
 block sidebar
-  .widget
+  .sidebar_widget
     h1 Menu
     p
       ul

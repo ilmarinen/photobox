@@ -1,23 +1,26 @@
 extends layout
 
 block content
-  p
-    form(action='/register', method='post')
-      ul
-        li
-          label Username
-          input(type='text', name='username')
-        li
-          label Password
-          input(type='password', name='password1')
-        li
-          label Re-Type Password
-          input(type='password', name='password2')
-        li
-          input(type='submit', value='Register')
+
+  .main_widget
+    h1 Register
+    p
+      form(action='/register', method='post')
+        ul
+          li
+            label Username
+            input(type='text', name='username')
+          li
+            label Password
+            input(type='password', name='password1')
+          li
+            label Re-Type
+            input(type='password', name='password2')
+          li
+            input(type='submit', value='Register')
 
 block sidebar
-  .widget
+  .sidebar_widget
     h1 Features
     p
      | Photobox allows you to upload photos and browse them at your leisure. Thanks for registering!
