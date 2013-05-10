@@ -37,7 +37,10 @@ header {
 .main-content p {
   margin-bottom: 20px;
 }
-.main-content p form {
+.main-content ul {
+  list-style-type: none;
+}
+.main-content ul form {
   font-size: 13px;
   padding: 0px 10px;
   margin-bottom: 10px;

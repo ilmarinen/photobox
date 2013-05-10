@@ -3,12 +3,17 @@ extends layout
 block content
   p
     form(action='/picture/new', method='post', enctype='multipart/form-data')
-      label Title
-      input(type="text", name="photoTitle")
+      ul
+        li
+          label Title
+          input(type="text", name="photoTitle")
 
-      label Photo
-      input(type="file", name="photoImage")
-      input(type='submit', value='Upload')
+        li
+          label Photo
+          input(type="file", name="photoImage")
+
+        li
+          input(type='submit', value='Upload')
 
 block sidebar
   .widget
