@@ -128,7 +128,7 @@ exports.editPicture = function(req, res){
             res.render('general_message', {title: 'Error, image not found.', header: 'Welcome to Photobox', general_message: 'Error, image not found.'});
         }
         else{
-            res.render('edit_photo', {title: 'Edit Picture', header: 'Welcome to Photobox', picture_id: photo.id, picture_title: photo.title, picture_description: photo.description});
+            res.render('photo_edit', {title: 'Edit Picture', header: 'Welcome to Photobox', picture_id: photo.id, picture_title: photo.title, picture_description: photo.description});
         }
     });
 }

@@ -4,11 +4,11 @@ block content
   .main_widget
     h1 Upload a Photo
     p
-      form(action='/picture/new', method='post', enctype='multipart/form-data')
+      form(action='/photo/new', method='post', enctype='multipart/form-data')
         ul
           li
             label Photo Title
-            input(type="text", name="photoTitle")
+            input(type="text", name="imageTitle")
 
           li
             input(type="file", value="Select Photo", name="photoImage")
@@ -25,10 +25,10 @@ block sidebar
           a(href='/home') Home
 
         li
-          a(href='/picture/new') New Photo
+          a(href='/photo/new') New Photo
 
         li
-          a(href='/picture') Browse Photos
+          a(href='/photo') Browse Photos
 
         li
           a(href='/logout') Logout
