@@ -12,14 +12,14 @@ the photo uploading form as well as the POST
 request that handles the data of the uploaded photo.
 ---------------------------------------------------*/
 exports.uploadPicture = function(req, res){
-    res.render('upload', {title: 'Upload Picture', header: 'Welcome to Photobox'});
+    res.render('photo_upload', {title: 'Upload Picture', header: 'Welcome to Photobox'});
 }
 
 
 exports.processUploadPicture = function(req, res){
     console.log('Uploaded Image: ', req.files);
     if (req.files.photoImage.size == 0){
-        res.redirect('/picture/new');
+        res.redirect('/photo/new');
     }
     else{
     User.findOne({username: req.session.username}, function(err, user){
@@ -30,7 +30,7 @@ exports.processUploadPicture = function(req, res){
         thumbnailName = 'thumbnail-' + path.basename(req.files.photoImage.path);
         thumbnailPath = path.join(path.dirname(req.files.photoImage.path), thumbnailName);
         im.resize({srcPath: req.files.photoImage.path, dstPath: thumbnailPath, width: 256}, function(err, stdout, stderr){
-            if(err) res.redirect('/picture/new');
+            if(err) res.redirect('/photo/new');
             console.log('Successfully resized ' + req.files.photoImage.path + ' to ' + thumbnailPath);
             thumbnailData = fs.readFileSync(thumbnailPath);
             newPhoto = new photobox.Photo();
@@ -92,8 +92,8 @@ pictures belonging to a user.
 exports.viewPicture = function(req, res){
     var ObjectId = mongoose.Types.ObjectId;
     object_id = ObjectId.fromString(req.params.id)
-    photobox.Photo.findOne({"_id": object_id}, function(err, pic){
-        res.render('picture', {"title": pic.title, header: 'Welcome to Photobox', "picture_id": object_id, picture_title: pic.title, picture_description: pic.description});
+    photobox.Photo.findOne({"_id": object_id}, function(err, photo){
+        res.render('photo_display', {"title": photo.title, header: 'Welcome to Photobox', "picture_id": object_id, picture_title: photo.title, picture_description: photo.description});
     });
 }
 
@@ -109,7 +109,7 @@ exports.getPictures = function(req, res){
                 console.log('Photo id: ' + photos[i].id);
                 photo_ids[i] = photos[i].id
             }
-            res.render('gallery', {title: 'Browse Photos', header: 'Welcome to Photobox', 'photo_ids': photo_ids});
+            res.render('gallery_display', {title: 'Browse Photos', header: 'Welcome to Photobox', 'photo_ids': photo_ids});
         });
     });
 }
@@ -125,10 +125,10 @@ exports.editPicture = function(req, res){
     object_id = ObjectId.fromString(req.params.id)
     photobox.Photo.findOne({_id: object_id}, function(err, photo){
         if(err){
-            res.render('general_message', {title: 'Error, image not found.', header: 'Welcome to Photobox', general_message: 'Error$
+            res.render('general_message', {title: 'Error, image not found.', header: 'Welcome to Photobox', general_message: 'Error, image not found.'});
         }
         else{
-            res.render('edit_picture', {title: 'Edit Picture', header: 'Welcome to Photobox', picture_title: photo.title, picture_d$
+            res.render('edit_photo', {title: 'Edit Picture', header: 'Welcome to Photobox', picture_id: photo.id, picture_title: photo.title, picture_description: photo.description});
         }
     });
 }
@@ -146,7 +146,7 @@ exports.updatePicture = function(req, res){
             photo.title = req.param('imageTitle', 'Untitled Image');
             photo.description = req.param('imageDescription', '');
             photo.save();
-            res.redirect('/viewpicture/' + req.params.id);
+            res.redirect('/viewphoto/' + req.params.id);
         }
     });
 }
