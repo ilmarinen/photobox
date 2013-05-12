@@ -6,6 +6,11 @@ var photobox = require('./photobox-model'),
     User = require('../simple-auth/user-model');
 
 
+/*-------------Uploading Photos---------------------
+The following two functions handle the display of
+the photo uploading form as well as the POST
+request that handles the data of the uploaded photo.
+---------------------------------------------------*/
 exports.uploadPicture = function(req, res){
     res.render('upload', {title: 'Upload Picture', header: 'Welcome to Photobox'});
 }
@@ -30,7 +35,7 @@ exports.processUploadPicture = function(req, res){
             thumbnailData = fs.readFileSync(thumbnailPath);
             newPhoto = new photobox.Photo();
             newPhoto.owner = user_id;
-            newPhoto.title = req.param('imageTitle', 'Untitled Image')
+            newPhoto.title = req.param('imageTitle');
             newPhoto.image.data = data;
             newPhoto.image.contentType = 'image/jpeg';
             newPhoto.thumbnail.data = thumbnailData;
@@ -49,10 +54,11 @@ exports.processUploadPicture = function(req, res){
 }
 
 
-exports.welcome = function(req, res){
-   res.render('welcome', {title: 'Welcome to Photobox', header: 'Welcome to Photobox'});
-}
-
+/*--------------Get Photo-----------------
+The get following three functions handle
+the retreival of photos and thumbnails
+respectively.
+-----------------------------------------*/
 exports.getPicture = function(req, res){
     console.log('get picture');
     var ObjectId = mongoose.Types.ObjectId;
@@ -63,6 +69,7 @@ exports.getPicture = function(req, res){
         res.send(photo.image.data);
     });
 }
+
 
 exports.getThumbnail = function(req, res){
     console.log('get thumbnail');
@@ -76,11 +83,12 @@ exports.getThumbnail = function(req, res){
 }
 
 
-exports.getGallery = function(req, res){
-    res.render('gallery', {title: 'Gallery View', id: req.params.id});
-}
-
-
+/*-------------Display Picture/Pictures------------
+The following two functions handle the retreival of
+a single picture and its meta-data for display, as
+well as the retreival of the thumbnails of all the
+pictures belonging to a user.
+--------------------------------------------------*/
 exports.viewPicture = function(req, res){
     var ObjectId = mongoose.Types.ObjectId;
     object_id = ObjectId.fromString(req.params.id)
@@ -88,12 +96,6 @@ exports.viewPicture = function(req, res){
         res.render('picture', {"title": pic.title, header: 'Welcome to Photobox', "picture_id": object_id, picture_title: pic.title, picture_description: pic.description});
     });
 }
-
-
-exports.newGallery = function(req, res){
-    res.render('newgallery', {title: 'New Gallery', header: 'Welcome to Photobox'});
-}
-
 
 
 exports.getPictures = function(req, res){
@@ -112,6 +114,24 @@ exports.getPictures = function(req, res){
     });
 }
 
+
+/*-----------Edit Picture-------------------------
+The following two functions handle the
+display of the form for editing the meta-data of
+a particular photo.
+------------------------------------------------*/
+exports.editPicture = function(req, res){
+    var ObjectId = mongoose.Types.ObjectId;
+    object_id = ObjectId.fromString(req.params.id)
+    photobox.Photo.findOne({_id: object_id}, function(err, photo){
+        if(err){
+            res.render('general_message', {title: 'Error, image not found.', header: 'Welcome to Photobox', general_message: 'Error$
+        }
+        else{
+            res.render('edit_picture', {title: 'Edit Picture', header: 'Welcome to Photobox', picture_title: photo.title, picture_d$
+        }
+    });
+}
 
 
 exports.updatePicture = function(req, res){
@@ -132,15 +152,17 @@ exports.updatePicture = function(req, res){
 }
 
 
-exports.editPicture = function(req, res){
-    var ObjectId = mongoose.Types.ObjectId;
-    object_id = ObjectId.fromString(req.params.id)
-    photobox.Photo.findOne({_id: object_id}, function(err, photo){
-        if(err){
-            res.render('general_message', {title: 'Error, image not found.', header: 'Welcome to Photobox', general_message: 'Error, image not found.'});
-        }
-        else{
-            res.render('edit_picture', {title: 'Edit Picture', header: 'Welcome to Photobox', picture_title: photo.title, picture_description: photo.description, picture_id: photo.id});
-        }
-    });
+exports.welcome = function(req, res){
+   res.render('welcome', {title: 'Welcome to Photobox', header: 'Welcome to Photobox'});
 }
+
+
+exports.getGallery = function(req, res){
+    res.render('gallery', {title: 'Gallery View', id: req.params.id});
+}
+
+
+exports.newGallery = function(req, res){
+    res.render('newgallery', {title: 'New Gallery', header: 'Welcome to Photobox'});
+}
+
