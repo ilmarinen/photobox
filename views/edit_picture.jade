@@ -1,0 +1,26 @@
+extends layout
+
+block content
+
+  .main_widget
+    h1 Edit Picture
+    p
+      img(src='/thumbnail/#{picture_id}')
+
+      form(action='/editpicture/#{picture_id}', method='post')
+        ul
+          li
+            label Title
+            input(type='text', name='imageTitle', value='#{picture_title}')
+          li
+            label Description
+            input(type='textarea', name='imageDescription', value='#{picture_description}')
+          li
+            input(type='submit', value='Update')
+
+block sidebar
+  .sidebar_widget
+    h1 Features
+    p
+     | Photobox allows you to upload photos and browse them at your leisure. Thanks for registering!
+      

@@ -85,7 +85,7 @@ exports.viewPicture = function(req, res){
     var ObjectId = mongoose.Types.ObjectId;
     object_id = ObjectId.fromString(req.params.id)
     photobox.Photo.findOne({"_id": object_id}, function(err, pic){
-        res.render('picture', {"title": pic.title, header: 'Welcome to Photobox', "picture_id": object_id});
+        res.render('picture', {"title": pic.title, header: 'Welcome to Photobox', "picture_id": object_id, picture_title: pic.title, picture_description: pic.description});
     });
 }
 
@@ -109,5 +109,38 @@ exports.getPictures = function(req, res){
             }
             res.render('gallery', {title: 'Browse Photos', header: 'Welcome to Photobox', 'photo_ids': photo_ids});
         });
+    });
+}
+
+
+
+exports.updatePicture = function(req, res){
+    var ObjectId = mongoose.Types.ObjectId;
+    object_id = ObjectId.fromString(req.params.id)
+    photobox.Photo.findOne({_id: object_id}, function(err, photo){
+        if(err){
+            res.render('general_message', {title: 'Error, image not found.', header: 'Welcome to Photobox', general_message: 'Error, image not found.'});
+        }
+        else{
+            console.log('Update picture with new title: ', req.param('imageTitle'));
+            photo.title = req.param('imageTitle', 'Untitled Image');
+            photo.description = req.param('imageDescription', '');
+            photo.save();
+            res.redirect('/viewpicture/' + req.params.id);
+        }
+    });
+}
+
+
+exports.editPicture = function(req, res){
+    var ObjectId = mongoose.Types.ObjectId;
+    object_id = ObjectId.fromString(req.params.id)
+    photobox.Photo.findOne({_id: object_id}, function(err, photo){
+        if(err){
+            res.render('general_message', {title: 'Error, image not found.', header: 'Welcome to Photobox', general_message: 'Error, image not found.'});
+        }
+        else{
+            res.render('edit_picture', {title: 'Edit Picture', header: 'Welcome to Photobox', picture_title: photo.title, picture_description: photo.description, picture_id: photo.id});
+        }
     });
 }

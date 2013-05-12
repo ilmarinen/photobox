@@ -15,3 +15,6 @@ app.get('/viewpicture/:id', photobox_handler.viewPicture);
 app.get('/gallery/new', simple_auth.authenticate, photobox_handler.newGallery);
 
 app.get('/home', simple_auth.authenticate, photobox_handler.welcome);
+
+app.get('/editpicture/:id', simple_auth.authenticate, photobox_handler.editPicture);
+app.post('/editpicture/:id', simple_auth.authenticate, photobox_handler.updatePicture);
