@@ -10,6 +10,7 @@ app.post('/editphoto/:id', simple_auth.authenticate, photobox_handler.updatePict
 app.get('/viewphoto/:id', photobox_handler.viewPicture);
 app.get('/thumbnail/:id', photobox_handler.getThumbnail);
 
+app.get('/photos:attribute/:id', photobox_handler.getPhotos);
 
 app.get('/gallery/new', simple_auth.authenticate, photobox_handler.newGallery);
 

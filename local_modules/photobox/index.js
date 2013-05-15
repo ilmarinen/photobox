@@ -83,6 +83,43 @@ exports.getThumbnail = function(req, res){
 }
 
 
+exports.getPhotos = function(req, res){
+    photo_attribute = req.params.attribute.substring(1);
+    console.log(photo_attribute);
+    var ObjectId = mongoose.Types.ObjectId;
+    photo_id = ObjectId.fromString(req.params.id)
+    photobox.Photo.findOne({"_id": photo_id}, function(err, photo){
+        if(err){
+            throw err;
+        }
+        else if(photo_attribute == 'image'){
+            res.contentType(photo.image.contentType);
+            res.send(photo.image.data);
+        }
+        else if(photo_attribute == 'thumbnail'){
+            res.contentType(photo.thumbnail.contentType);
+            res.send(photo.thumbnail.data);
+        }
+        else if(photo_attribute == 'title'){
+            res.contentType('text');
+            res.send(photo.title);
+        }
+        else if(photo_attribute == 'description'){
+            res.contentType('text');
+            res.send(photo.description);
+        }
+        else if(photo_attribute == 'owner'){
+            res.contentType('text');
+            res.send(photo.owner);
+        }
+        else{
+            res.contentType('text');
+            res.send('Error: Photo objects do not have ' + req.params.attribute + ' as an attribute.');
+        }
+    });
+}
+
+
 /*-------------Display Picture/Pictures------------
 The following two functions handle the retreival of
 a single picture and its meta-data for display, as
