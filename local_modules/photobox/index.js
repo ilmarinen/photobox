@@ -101,21 +101,60 @@ exports.getPhotos = function(req, res){
             res.send(photo.thumbnail.data);
         }
         else if(photo_attribute == 'title'){
-            res.contentType('text');
-            res.send(photo.title);
+            if(photo.title==null){
+                title_data = 'Null';
+            }
+            else{
+                title_data = photo.title;
+            }
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.write(JSON.stringify({id: photo.id, title: title_data}));
+            res.end();
         }
         else if(photo_attribute == 'description'){
-            res.contentType('text');
-            res.send(photo.description);
+            if(photo.description==null){
+                description_data = 'Null';
+            } 
+            else{
+                description_data = photo.description;
+            }
+
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.write(JSON.stringify({id: photo.id, description: description_data}));
+            res.end();
         }
         else if(photo_attribute == 'owner'){
-            res.contentType('text');
-            res.send(photo.owner);
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.write(JSON.stringify({id: photo.id, owner: photo.owner}));
+            res.end();
         }
         else{
-            res.contentType('text');
-            res.send('Error: Photo objects do not have ' + req.params.attribute + ' as an attribute.');
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.write(JSON.stringify({error: 'No such photo attribute.'}));
+            res.end();
         }
+    });
+}
+
+
+exports.getAllPhotos = function(req, res){
+    User.findOne({username: req.session.username}, function(err, user){
+        var ObjectId = mongoose.Types.ObjectId;
+        user_id = ObjectId.fromString(user.id);
+        photobox.Photo.find({owner: user_id}, function(err, photos){
+            if(err){
+                throw err;
+            }
+            else{
+                var photo_ids_list = [];
+                for(var i=0; i < photos.length; i++){
+                    photo_ids_list[i] = photos[i].id;
+                }
+                res.writeHead(200, {'Content-Type': 'application/json'});
+                res.write(JSON.stringify({photo_ids: photo_ids_list}));
+                res.end();
+            }
+        });
     });
 }
 
