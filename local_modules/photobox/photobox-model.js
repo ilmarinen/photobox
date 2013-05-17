@@ -17,6 +17,7 @@ var PhotoSchema = Schema({
     photographer: Schema.ObjectId,
     tags: [String],
     owner: Schema.ObjectId,
+    deleted: Boolean
 });
 
 var GallerySchema = Schema({

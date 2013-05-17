@@ -40,6 +40,7 @@ exports.processUploadPicture = function(req, res){
             newPhoto.image.contentType = 'image/jpeg';
             newPhoto.thumbnail.data = thumbnailData;
             newPhoto.thumbnail.contentType = 'image/jpeg';
+            newPhoto.deleted = false;
             newPhoto.save(function(err, a){
                 if(err) throw err;
                 console.log('Saving');
@@ -63,7 +64,7 @@ exports.getPicture = function(req, res){
     console.log('get picture');
     var ObjectId = mongoose.Types.ObjectId;
     object_id = ObjectId.fromString(req.params.id)
-    photobox.Photo.findOne({"_id": object_id}, function(err, photo){
+    photobox.Photo.findOne({"_id": object_id, deleted: false}, function(err, photo){
         console.log(photo.title)
         res.contentType(photo.image.contentType);
         res.send(photo.image.data);
@@ -75,7 +76,7 @@ exports.getThumbnail = function(req, res){
     console.log('get thumbnail');
     var ObjectId = mongoose.Types.ObjectId;
     object_id = ObjectId.fromString(req.params.id)
-    photobox.Photo.findOne({"_id": object_id}, function(err, photo){
+    photobox.Photo.findOne({"_id": object_id, deleted: false}, function(err, photo){
         console.log(photo.title)
         res.contentType(photo.thumbnail.contentType);
         res.send(photo.thumbnail.data);
@@ -88,7 +89,7 @@ exports.getPhotos = function(req, res){
     console.log(photo_attribute);
     var ObjectId = mongoose.Types.ObjectId;
     photo_id = ObjectId.fromString(req.params.id)
-    photobox.Photo.findOne({"_id": photo_id}, function(err, photo){
+    photobox.Photo.findOne({"_id": photo_id, deleted: false}, function(err, photo){
         if(err){
             throw err;
         }
@@ -141,7 +142,7 @@ exports.getAllPhotos = function(req, res){
     User.findOne({username: req.session.username}, function(err, user){
         var ObjectId = mongoose.Types.ObjectId;
         user_id = ObjectId.fromString(user.id);
-        photobox.Photo.find({owner: user_id}, function(err, photos){
+        photobox.Photo.find({owner: user_id, deleted: false}, function(err, photos){
             if(err){
                 throw err;
             }
@@ -168,7 +169,7 @@ pictures belonging to a user.
 exports.viewPicture = function(req, res){
     var ObjectId = mongoose.Types.ObjectId;
     object_id = ObjectId.fromString(req.params.id)
-    photobox.Photo.findOne({"_id": object_id}, function(err, photo){
+    photobox.Photo.findOne({"_id": object_id, deleted: false}, function(err, photo){
         res.render('photo_display', {"title": photo.title, header: 'Welcome to Photobox', "picture_id": object_id, picture_title: photo.title, picture_description: photo.description});
     });
 }
@@ -178,7 +179,7 @@ exports.getPictures = function(req, res){
     User.findOne({username: req.session.username}, function(err, user){
         var ObjectId = mongoose.Types.ObjectId;
         user_id = ObjectId.fromString(user.id)
-        photobox.Photo.find({owner: user_id},function(err, photos){
+        photobox.Photo.find({owner: user_id, deleted: false},function(err, photos){
             if(err) {console.log(err); throw err;}
             var photo_ids = [];
             for(i = 0; i < photos.length; i++){
@@ -199,7 +200,7 @@ a particular photo.
 exports.editPicture = function(req, res){
     var ObjectId = mongoose.Types.ObjectId;
     object_id = ObjectId.fromString(req.params.id)
-    photobox.Photo.findOne({_id: object_id}, function(err, photo){
+    photobox.Photo.findOne({_id: object_id, deleted: false}, function(err, photo){
         if(err){
             res.render('general_message', {title: 'Error, image not found.', header: 'Welcome to Photobox', general_message: 'Error, image not found.'});
         }
@@ -213,7 +214,7 @@ exports.editPicture = function(req, res){
 exports.updatePicture = function(req, res){
     var ObjectId = mongoose.Types.ObjectId;
     object_id = ObjectId.fromString(req.params.id)
-    photobox.Photo.findOne({_id: object_id}, function(err, photo){
+    photobox.Photo.findOne({_id: object_id, deleted: false}, function(err, photo){
         if(err){
             res.render('general_message', {title: 'Error, image not found.', header: 'Welcome to Photobox', general_message: 'Error, image not found.'});
         }
@@ -221,8 +222,18 @@ exports.updatePicture = function(req, res){
             console.log('Update picture with new title: ', req.param('imageTitle'));
             photo.title = req.param('imageTitle', 'Untitled Image');
             photo.description = req.param('imageDescription', '');
+            photo.deleted = false;
+            if(req.param('imageDeleted')=='true'){
+                photo.deleted = true;
+            }
+            console.log(req.param('imageDeleted'));
             photo.save();
-            res.redirect('/viewphoto/' + req.params.id);
+            if(req.param('imageDeleted') == 'true'){
+                res.redirect('/photo');
+            }
+            else{
+                res.redirect('/viewphoto/' + req.params.id);
+            }
         }
     });
 }
