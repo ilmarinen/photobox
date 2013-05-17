@@ -35,6 +35,10 @@ header {
 .thumbnail_widget a {
   text-decoration: none;
 }
+.edit_widget {
+  font-size: 10px;
+  display-inline: block;
+}
 .main_widget {
   border-radius: 3px;
   border: 1px solid #ccc;

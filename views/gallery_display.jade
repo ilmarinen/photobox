@@ -6,6 +6,8 @@ block content
       p
         a(href="/viewphoto/#{photo_id}")
           img(src="/thumbnail/#{photo_id}")
+        .edit_select
+          a(href="/editphoto/#{photo_id}") Edit
 
 block sidebar
   .sidebar_widget
