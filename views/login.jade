@@ -1,30 +1,57 @@
-extend layout
+!!! 5
+head
+    script(src='http://code.jquery.com/jquery.js')
+    script(language='JavaScript', src='/stylesheets/bootstrap/js/bootstrap.js')
+    link(href='/stylesheets/bootstrap/css/bootstrap.css', rel='stylesheet')
+    link(href='/stylesheets/bootstrap/css/bootstrap-responsive.css', rel='stylesheet')
+    title Photobox - Login
+    style(type='text/css')
+      body {
+      background-color: #CCC;
+      }
+  body
+    .container
+      .well
+        ul.nav.nav-tabs
+          li.active
+            a(href='#login', data-toggle='tab') Login
+          li
+            a(href='#create', data-toggle='tab') Create Account
+        #myTabContent.tab-content
+          #login.tab-pane.active.in
+            form.form-horizontal(action='/login', method='POST')
+              fieldset
+                #legend
+                  legend. Login
+                .control-group
+                  //
+                     Username 
+                  label.control-label(for='username') Username
+                  .controls
+                    input#username.input-xlarge(type='text', name='username', placeholder='')
+                .control-group
+                  //
+                     Password
+                  label.control-label(for='password') Password
+                  .controls
+                    input#password.input-xlarge(type='password', name='password', placeholder='')
+                .control-group
+                  //
+                     Button 
+                  .controls
+                    button.btn.btn-success Login
+          #create.tab-pane.fade
+            form(action='/register', method='POST')
+              label Username
+              input.input-xlarge(type='text', value='', name='username')
+              label First Name
+              input.input-xlarge(type='text', value='', name='firstname')
+              label Last Name
+              input.input-xlarge(type='text', value='', name='lastname')
+              label Password
+              input#password1.input-xlarge(type='password', name='password1')
+              label Re-Type Password
+              input#password2.input-xlarge(type='password', name='password2')
+              div
+                button.btn.btn-primary Create Account
 
-block content
-  p
-    | Vivamus hendrerit arcu sed erat molestie
-    | vehicula. Sed auctor neque eu tellus
-    | rhoncus ut eleifend nibh porttitor. Ut in.
-    
-  p
-    | Donec congue lacinia dui, a porttitor
-    | lectus condimentum laoreet. Nunc eu
-    | ullamcorper orci. Quisque eget odio ac
-    | lectus vestibulum faucibus eget in metus.
-    | In pellentesque faucibus vestibulum. Nulla
-    | at nulla justo, eget luctus tortor.
-
-block sidebar
-  .sidebar_widget
-    h1 Login
-    p
-      form(action='/login', method='post')
-        ul
-          li
-            label Username
-            input(type='text', name='username')
-          li
-            label Password
-            input(type='password', name='password')
-          li
-            input(type='submit', value='Log In')
