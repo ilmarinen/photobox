@@ -1,26 +1,10 @@
-extends layout
+extends bootstrap_layout
 
 block content
-  .main_widget
-    p
-      | Welcome to your home page #{username}.
+	script(language="JavaScript")
+		$(document).ready(function(){
+			$("#navigationbar").navbar({get_menu_url: "/navbar_menu", active_item: "Home"});
+		});
 
-
-
-block sidebar
-  .sidebar_widget
-    h1 Menu
-    p
-      ul
-        li
-          a(href='/home') Home
-
-        li
-          a(href='/photo/new') New Photo
-
-        li
-          a(href='/photo') Browse Photos
-
-        li
-          a(href='/logout') Logout
+	#navigationbar
 
