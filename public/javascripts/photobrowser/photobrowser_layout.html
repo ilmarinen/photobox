@@ -1,0 +1,83 @@
+<div id="photobrowser_tabs">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#browse" data-toggle="tab">Browse</a></li>
+        <li><a href="#upload" data-toggle="tab">Upload</a></li>
+      </ul>
+
+      <div class="tab-content" id="">
+        <div class="tab-pane active in" id="browse">
+          <div id="photobrowser_thumbnails">
+          </div>
+
+          <div id="editphotoDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+              <h3 id="myModalLabel">Edit Photo</h3>
+            </div>
+
+            <div class="modal-body row-fluid">
+              <div id="dialog_thumbnail" class="span6 offset4" style="height: 250px; border: none;">
+                <img class="thumbnail img-polaroid span6" id="dialog_thumbnail_img" src="" style="width: 270px;">
+              </div>
+              <form id="modalForm" class="form-horizontal span6 row top-buffer" action="/accounts" method="POST">
+                <fieldset>
+                  <div class="control-group">
+                    <label class="control-label" for="photo_title">Title</label>
+                    <div class="controls">
+                    <input type="text" id="photo_title" name="photo_title" placeholder="" class="input-xlarge">
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label" for="photo_description">Description</label>
+                    <div class="controls">
+                    <textarea rows="3" id="photo_description" name="photo_description" placeholder="" class="input-xlarge"></textarea>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+
+            <div class="modal-footer">
+              <button class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="upload">
+          <form id="photobrowser_upload_form" class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+            <fieldset>
+              <div id="legend">
+                <legend class="">Upload Photo</legend>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="photoImage">File</label>
+                <div class="controls">
+                  <input type="file" id="photoImage" name="photoImage" placeholder="" class="input-xlarge">
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label" for="photoTitle">Title</label>
+                <div class="controls">
+                  <input type="text" id="photoTitle" name="photoTitle" placeholder="" class="input-xlarge">
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label" for="photoDescription">Description</label>
+                <div class="controls">
+                  <textarea class="input-xlarge" id="photoDescription" name="photoDescription" rows="10" cols="50"></textarea>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <div class="controls">
+                  <button class="btn btn-success">Upload</button>
+                </div>
+              </div>
+
+            </fieldset>
+          </form>
+        </div>
+      </div>
+</div>

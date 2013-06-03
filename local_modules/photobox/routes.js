@@ -10,8 +10,11 @@ app.post('/editphoto/:id', simple_auth.authenticate, photobox_handler.updatePict
 app.get('/viewphoto/:id', photobox_handler.viewPicture);
 app.get('/thumbnail/:id', photobox_handler.getThumbnail);
 
+app.get('/photobrowser', simple_auth.authenticate, photobox_handler.photobrowser);
+
 app.get('/photos:attribute/:id', simple_auth.authenticate, photobox_handler.getPhotos);
 app.get('/photos', simple_auth.authenticate, photobox_handler.getAllPhotos);
+app.post('/photos', simple_auth.authenticate, photobox_handler.processUploadPicture);
 
 app.get('/gallery/new', simple_auth.authenticate, photobox_handler.newGallery);
 

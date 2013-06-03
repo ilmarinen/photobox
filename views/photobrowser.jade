@@ -1,0 +1,13 @@
+extends bootstrap_layout
+
+block content
+	script(language="JavaScript")
+		$(document).ready(function(){
+			$("#navigationbar").navbar({get_menu_url: "/navbar_menu", active_item: "Photos"});
+			options = {plugin_path: "javascripts/photobrowser/", photos_url: '/photos/', thumbnail_url: '/photos:thumbnail/', photo_url: '/photos/'};
+			$("#photobrowser").photobrowser(options);
+		});
+
+	#navigationbar
+
+	#photobrowser.well

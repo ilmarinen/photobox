@@ -47,7 +47,7 @@ app.get('/navbar_menu', simple_auth.authenticate, function(req, res){
     res.write(JSON.stringify({
 	"menu_items": [
 		{"item_name": "Home", "item_url": "/home"},
-		{"item_name": "Photos", "item_url": "/photo"},
+		{"item_name": "Photos", "item_url": "/photobrowser"},
 		{"item_name": "Galleries", "item_url": "/browsegalleries"},
 		{"item_name": "Profile", "item_url": "/profile"}
 	],

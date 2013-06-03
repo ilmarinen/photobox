@@ -17,6 +17,7 @@ exports.uploadPicture = function(req, res){
 
 
 exports.processUploadPicture = function(req, res){
+    console.log('Request: ', req);
     console.log('Uploaded Image: ', req.files);
     if (req.files.photoImage.size == 0){
         res.redirect('/photo/new');
@@ -25,7 +26,8 @@ exports.processUploadPicture = function(req, res){
     User.findOne({username: req.session.username}, function(err, user){
         var ObjectId = mongoose.Types.ObjectId;
         user_id = ObjectId.fromString(user.id);
-        console.log(req.files.photoImage.path);
+        //console.log(req.files.photoImage.path);
+        console.log('Files: ', req);
         data = fs.readFileSync(req.files.photoImage.path);
         thumbnailName = 'thumbnail-' + path.basename(req.files.photoImage.path);
         thumbnailPath = path.join(path.dirname(req.files.photoImage.path), thumbnailName);
@@ -253,3 +255,7 @@ exports.newGallery = function(req, res){
     res.render('newgallery', {title: 'New Gallery', header: 'Welcome to Photobox'});
 }
 
+
+exports.photobrowser = function(req, res){
+    res.render('photobrowser');
+}
